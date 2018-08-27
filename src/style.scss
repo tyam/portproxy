@@ -1,0 +1,322 @@
+@font-face {
+    font-family: 'icomoon';
+    src:  url('icomoon.eot?cgsxau');
+    src:  url('icomoon.eot?cgsxau#iefix') format('embedded-opentype'),
+      url('icomoon.ttf?cgsxau') format('truetype'),
+      url('icomoon.woff?cgsxau') format('woff'),
+      url('icomoon.svg?cgsxau#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  [class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+  
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .icon-pencil:before {
+    content: "\e905";
+  }
+  .icon-cog:before {
+    content: "\e994";
+  }
+  .icon-bin:before {
+    content: "\e9ac";
+  }
+  .icon-plus:before {
+    content: "\ea0a";
+  }
+  .icon-info:before {
+    content: "\ea0c";
+  }
+  .icon-cross:before {
+    content: "\ea0f";
+  }
+  .icon-checkmark:before {
+    content: "\ea10";
+  }
+  
+
+
+$color-base-vanilla: #FFFFFF;
+$color-base2-vanilla: #F0F0F0;
+$color-text-vanilla: #444;
+$color-text2-vanilla: #555;
+$color-icon-vanilla: #777;
+$color-base-dark: #383840;
+$color-base2-dark: #484852;
+$color-text-dark: #F8F8FF;
+$color-text2-dark: #E8E8F0;
+$color-icon-dark: #C0C0C8;
+$color-scrollbar-dark: #606070;
+
+$height-cover: 32px;
+$height-item: 28px;
+$width-padding: 4px;
+$height-padding: 2px;
+$width-cushion: 8px;
+$width-padding-large: 32px;
+$height-padding-large: 32px;
+
+
+@mixin shadow1() {
+    box-shadow: 0 0.1rem 0.3rem rgba(0,0,0,0.12), 0 0.1rem 0.2rem rgba(0,0,0,0.24);
+}
+@mixin shadow2() {
+    box-shadow: 0 0.3rem 0.6rem rgba(0,0,0,0.16), 0 0.3rem 0.4rem rgba(0,0,0,0.23);
+}
+@mixin shadow3() {
+    box-shadow: 0 1rem 2rem rgba(0,0,0,0.19), 0 0.6rem 0.6rem rgba(0,0,0,0.23);
+}
+@mixin shadow4() {
+    box-shadow: 0 1.4rem 2.8rem rgba(0,0,0,0.25), 0 1rem 1rem rgba(0,0,0,0.22);
+}
+@mixin shadow5() {
+    box-shadow: 0 1.9rem 3.8rem rgba(0,0,0,0.3), 0 1.5rem 1.2rem rgba(0,0,0,0.22);
+}
+
+
+html, body {
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
+    font-size: 14px;
+    margin: 0;
+    height: 100%;
+}
+
+form {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.app {
+    height: 100%;
+}
+
+.main {
+    height: 100%;
+    &.dark {
+        background-color: $color-base-dark;
+        color: $color-text-dark;
+    }
+    &:not(.dark) {
+        background-color: $color-base-vanilla;
+        color: $color-text-vanilla;
+    }
+}
+
+.cover {
+    height: $height-cover;
+    line-height: $height-cover;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    .copy {
+        flex: 1 1 auto;
+        padding: 0 $width-padding;
+    }
+    .buttons {
+        flex: 0 0 80px;
+        text-align: right;
+
+    }
+}
+
+.body {
+    height: calc(100% - #{$height-cover + $height-item + 4px});
+    width: 100%;
+    overflow: scroll;
+    z-index: 0;
+    padding-top: 4px;
+}
+
+.items {
+    position: relative;
+    &.loading::after {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(255,255,255,0.5);
+    }
+}
+
+.item {
+    width: 100%;
+    .row {
+        height: $height-item;
+        line-height: $height-item;
+    }
+}
+
+.item.item-label {
+    @include shadow1();
+    z-index: 10;
+    .row {
+        & > div:not(:last-child) {
+            border-right-width: 1px;
+            border-right-style: solid;
+            span {
+                padding: 0 $width-padding;
+            }
+        }
+    }
+}
+
+.row {
+    display: flex;
+    flex-flow: row nowrap;
+    width: calc(100vw - 50px);
+}
+
+.row > div:nth-child(1), .row > div:nth-child(3) {
+    flex: 3 3 150px;
+}
+.row > div:nth-child(2), .row > div:nth-child(4) {
+    flex: 2 2 100px;
+}
+.row > div:nth-child(5) {
+    flex: 0 0 80px;
+}
+
+.configPane {
+    padding: $height-padding-large $width-padding-large;
+}
+
+label[for] {
+    display: inline-block;
+    width: 100px;
+    height: $height-item;
+    line-height: $height-item;
+}
+
+input {
+    height: $height-item;
+    line-height: $height-item;
+    min-width: 10px;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
+    font-size: 14px;
+    width: 100%;
+    padding: 0 $width-padding;
+    border-width: 1px;
+    border-style: solid;
+}
+span.display {
+    display: inline-block;
+    height: $height-item;
+    line-height: $height-item;
+    font-size: 14px;
+    padding: 0 $width-padding;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+
+button {
+    border: none;
+    outline: none;
+    vertical-align: middle;
+    padding: 0 $width-cushion;
+    height: $height-item;
+    line-height: $height-item;
+    font-size: 18px;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+select {
+    height: $height-item;
+    line-height: $height-item;
+    min-width: 80px;
+    font-size: 14px;
+}
+
+.main.dark {
+    .cover, .item.item-label {
+        background-color: $color-base2-dark;
+        .row > div {
+            border-right-color: $color-base-dark;
+        }
+    }
+    input {
+        color: $color-text-dark;
+        border-color: #888888;
+        background-color: $color-base-dark;
+        &.error {
+            border-color: #FFB0B0;
+        }
+    }
+    button {
+        color: $color-icon-dark;
+        &:hover {
+            color: $color-text2-dark;
+        }
+        &.primary {
+            color: $color-base2-dark;
+            background-color: $color-icon-dark;
+        }
+        &.primary:hover {
+            color: $color-base-dark;
+        }
+    }
+    select {
+        color: $color-text-dark;
+        background-color: $color-base-dark;
+    }
+    ::-webkit-scrollbar {     
+        background-color: $color-base2-dark;
+        width: 14px;
+    }
+    ::-webkit-scrollbar-thumb:window-inactive, ::-webkit-scrollbar-thumb {
+        background:  $color-scrollbar-dark;
+    }
+}
+.main:not(.dark) {
+    .cover, .item.item-label {
+        background-color: $color-base2-vanilla;
+        .row > div {
+            border-right-color: $color-base-vanilla;
+        }
+    }
+    input {
+        color: $color-text-vanilla;
+        border-color: #D0D0D0;
+        background-color: $color-base-vanilla;
+        &.error {
+            border-color: #FFB0B0;
+        }
+    }
+    button {
+        color: $color-icon-vanilla;
+        &:hover {
+            color: $color-text2-vanilla;
+        }
+        &.primary {
+            color: $color-base2-vanilla;
+            background-color: $color-icon-vanilla;
+        }
+        &.primary:hover {
+            color: $color-base-vanilla;
+        }
+    }
+    select {
+        color: $color-text-vanilla;
+        background-color: $color-base-vanilla;
+    }
+    ::-webkit-scrollbar {
+        width: 14px;
+    }
+}

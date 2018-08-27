@@ -1,0 +1,60 @@
+{
+  "name": "portproxy",
+  "version": "0.0.1",
+  "description": "GUI replacement of \"netsh portproxy\" command (only for Windows)",
+  "main": "dist/app.js",
+  "dependencies": {
+    "electron-json-storage": "^4.1.1",
+    "hyperapp": "^1.2.8",
+    "ramda": "^0.25.0",
+    "sudo-prompt": "^8.2.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "cpx": "^1.5.0",
+    "electron": "^2.0.7",
+    "electron-builder": "^20.28.2",
+    "electron-cli": "^0.2.8",
+    "node-sass": "^4.9.3",
+    "npx": "^10.2.0",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "babel": "babel src --out-dir dist --source-map inline",
+    "cp": "cpx \"src/*.{png,jpg,gif,svg,mp4,eot,ttf,woff,html,json,css}\" dist",
+    "sass": "node-sass src/style.scss dist/style.css --output-style compressed --source-map dist",
+    "build": "npm run babel && npm run cp && npm run sass",
+    "start": "electron .",
+    "package": "./node_modules/.bin/electron-builder"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tyam/portproxy.git"
+  },
+  "keywords": [],
+  "author": "Tetsuo Yamada",
+  "bugs": {
+    "url": "https://github.com/tyam/portproxy/issues"
+  },
+  "homepage": "https://github.com/tyam/portproxy#readme",
+  "build": {
+    "appId": "com.electron.portproxy", 
+    "productName": "portproxy", 
+    "win": {
+      "target": "portable"
+    },
+    "files": [
+      "dist/*"
+    ],
+    "directories": {
+      "output": "build"
+    }
+  }
+}
